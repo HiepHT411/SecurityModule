@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=cicd_security_module
+      - MYSQL_ROOT_PASSWORD=password
+    ports:
+      - '3307:3306'
