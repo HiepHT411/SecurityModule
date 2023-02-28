@@ -1,27 +1,18 @@
 image: docker:latest
 services:
   - docker:dind
+  - mysql:latest
 
 variables:
   DOCKER_DRIVER: overlay
   SPRING_PROFILES_ACTIVE: gitlab-ci
+  MYSQL_USER: root
+  MYSQL_PASSWORD: password
+  MYSQL_DATABASE: cicd_security_module
+  MYSQL_ROOT_PASSWORD: password
 
 stages:
-  - mysql-build
   - build
-
-mysql_build:
-  stage: mysql-build
-  variables:
-    MYSQL_DATABASE: cicd_security_module
-    MYSQL_ROOT_PASSWORD: password
-  services:
-  - mysql
-  image: mysql
-  before_script:
-  - mysql --version
-  script:
-  - echo "SELECT 'OK';" | mysql --user=root --password="${MYSQL_ROOT_PASSWORD}" --host=mysql "${MYSQL_DATABASE}"
 
 maven-build:
   image: maven:3-jdk-11
