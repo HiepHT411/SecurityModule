@@ -8,18 +8,11 @@ variables:
 
 stages:
   - build
-  - build-docker-image
 
-build-java-project:
+maven-build:
+  image: maven:3-jdk-11
   stage: build
-  script:
-    mvn package
+  script: "mvn package -B"
   artifacts:
     paths:
-      - /home/gitlab-runner/
-
-build-docker-image:
-  stage: build-docker-image
-  script:
-    - docker info
-    - docker build -t Java Next Generation/HiepLaboratory .
+      - target/*.jar
