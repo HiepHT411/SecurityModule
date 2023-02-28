@@ -1,0 +1,25 @@
+image: docker:latest
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  SPRING_PROFILES_ACTIVE: gitlab-ci
+
+stages:
+  - build
+  - build-docker-image
+
+build-java-project:
+  stage: build
+  script:
+    mvn package
+  artifacts:
+    paths:
+      - /home/gitlab-runner/
+
+build-docker-image:
+  stage: build-docker-image
+  script:
+    - docker info
+    - docker build -t Java Next Generation/HiepLaboratory .
