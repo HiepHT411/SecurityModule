@@ -11,6 +11,7 @@ stages:
   - build
 
 mysql_build:
+  stage: mysql-build
   variables:
     MYSQL_DATABASE: cicd_security_module
     MYSQL_ROOT_PASSWORD: password
