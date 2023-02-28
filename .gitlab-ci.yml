@@ -1,7 +1,3 @@
-image: docker:latest
-services:
-  - docker:dind
-
 variables:
   DOCKER_DRIVER: overlay
   MYSQL_DATABASE: cicd_security_module
@@ -15,8 +11,6 @@ maven-build:
   services:
   - mysql:5.7
   stage: build
-  tags:
-    - dev2
   script: 
   - mvn package -B
   artifacts:
