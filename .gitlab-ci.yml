@@ -12,6 +12,8 @@ stages:
 maven-build:
   image: maven:3-jdk-11
   stage: build
+  tags:
+    dev2
   script: "mvn package -B"
   artifacts:
     paths:
