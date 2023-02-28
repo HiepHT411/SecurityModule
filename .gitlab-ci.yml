@@ -6,8 +6,6 @@ services:
 variables:
   DOCKER_DRIVER: overlay
   SPRING_PROFILES_ACTIVE: gitlab-ci
-  MYSQL_USER: root
-  MYSQL_PASSWORD: password
   MYSQL_DATABASE: cicd_security_module
   MYSQL_ROOT_PASSWORD: password
 
@@ -22,9 +20,6 @@ maven-build:
   tags:
     - dev2
   script: 
-  - mysql --version
-  - sleep 20
-  - echo "SHOW tables;"| mysql -u root -p"$MYSQL_ROOT_PASSWORD" -h 127.0.0.1 "${MYSQL_DATABASE}"
   - mvn package -B
   artifacts:
     paths:
