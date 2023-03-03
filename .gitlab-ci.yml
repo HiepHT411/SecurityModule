@@ -6,6 +6,7 @@ variables:
 stages:
   - build
   - build-docker-image
+  - push-image-to-gitlab-registry
 
 maven-build:
   image: maven:3-jdk-11
@@ -25,3 +26,11 @@ docker-build:
   script:
     - docker info
     - docker build -t java-next-generation/hieplaboratory .
+
+push-image-to-gitLab-registry:
+  stage: push-image-to-gitlab-registry
+  before_script:
+    - docker login registry.gitlab.com -u "$CI_REGISTRY_USER" -p "$CI_GITLAB_TOKEN"
+  script:
+    - docker info
+    - docker push registry.savvycom.vn/java-next-generation/hieplaboratory
