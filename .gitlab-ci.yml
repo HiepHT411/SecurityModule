@@ -30,7 +30,7 @@ docker-build:
 push-image-to-gitLab-registry:
   stage: push-image-to-gitlab-registry
   before_script:
-    - docker login registry.gitlab.com -u "$CI_REGISTRY_USER" -p "$CI_GITLAB_TOKEN"
+    - docker login registry.savvycom.vn -u "$CI_REGISTRY_USER" -p "$CI_GITLAB_TOKEN"
   script:
     - docker info
     - docker push registry.savvycom.vn/java-next-generation/hieplaboratory
