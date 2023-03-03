@@ -5,6 +5,7 @@ variables:
 
 stages:
   - build
+  - build-docker-image
 
 maven-build:
   image: maven:3-jdk-11
@@ -18,3 +19,9 @@ maven-build:
   artifacts:
     paths:
       - target/*.jar
+
+docker-build:
+  stage: build-docker-image
+  script:
+    - docker info
+    - docker build -t java-next-generation/hieplaboratory .
