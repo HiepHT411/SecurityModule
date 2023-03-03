@@ -33,4 +33,4 @@ push-image-to-gitLab-registry:
     - docker login registry.savvycom.vn -u "$CI_REGISTRY_USER" -p "$CI_GITLAB_TOKEN"
   script:
     - docker info
-    - docker push registry.savvycom.vn/java-next-generation/hieplaboratory
+    - docker push java-next-generation/hieplaboratory
