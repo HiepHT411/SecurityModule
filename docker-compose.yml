@@ -3,6 +3,7 @@ services:
   mysqldb:
     container_name: mysqldb
     image: mysql:5.7
+    restart: unless-stopped
     environment:
       - MYSQL_DATABASE=cicd_security_module
       - MYSQL_ROOT_PASSWORD=password
