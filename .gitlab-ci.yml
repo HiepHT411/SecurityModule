@@ -14,7 +14,7 @@ maven-build:
   - mysql:5.7
   stage: build
   tags:
-  - runner-local-shell
+  - local-docker
   script: 
   - mvn package -B
   artifacts:
