@@ -6,7 +6,7 @@ variables:
   MYSQL_DATABASE: cicd_security_module
   MYSQL_ROOT_PASSWORD: password
 
-connect:
+.pre:
   image: mysql:5.7
   script:
   - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE"
