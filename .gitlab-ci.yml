@@ -1,20 +1,18 @@
+image: docker:latest
 services:
-- mysql:5.7
+  - docker:dind
+  - mysql:5.7
 
 variables:
   DOCKER_DRIVER: overlay
   MYSQL_DATABASE: cicd_security_module
   MYSQL_ROOT_PASSWORD: password
 
-.pre:
-  image: mysql:5.7
-  script:
-  - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE"
-
 stages:
   - build
   - build-docker-image
   - push-image-to-gitlab-registry
+  - test
 
 maven-build:
   image: maven:3-jdk-11
@@ -43,3 +41,13 @@ push-image-to-gitLab-registry:
     - docker info
     - docker tag java-next-generation/hieplaboratory registry.savvycom.vn/java-next-generation/hieplaboratory
     - docker push registry.savvycom.vn/java-next-generation/hieplaboratory
+
+test:
+  script:
+    - mvn verify
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+        - target/failsafe-reports/TEST-*.xml
