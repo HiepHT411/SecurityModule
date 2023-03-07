@@ -16,6 +16,7 @@ maven-build:
   tags:
   - local-docker
   script: 
+  - docker-compose up
   - mvn package -B
   artifacts:
     paths:
