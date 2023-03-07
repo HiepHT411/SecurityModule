@@ -20,7 +20,7 @@ maven-build:
   - mysql:5.7
   stage: build
   tags:
-  - local
+  - dev2-server
   script: 
   - mvn package -B
   artifacts:
