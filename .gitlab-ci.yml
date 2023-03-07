@@ -1,3 +1,6 @@
+services:
+- mysql
+
 variables:
   DOCKER_DRIVER: overlay
   MYSQL_DATABASE: cicd_security_module
@@ -16,7 +19,6 @@ maven-build:
   tags:
   - local-docker
   script: 
-  - docker-compose up
   - mvn package -B
   artifacts:
     paths:
