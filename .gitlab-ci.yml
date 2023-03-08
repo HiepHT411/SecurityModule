@@ -1,12 +1,7 @@
-image: docker:latest
-services:
-  - docker:dind
-  - mysql:5.7
-
 variables:
   DOCKER_DRIVER: overlay
   MYSQL_DATABASE: cicd_security_module
-  MYSQL_ROOT_PASSWORD: password
+  MYSQL_ROOT_PASSWORD: 123456a@
 
 stages:
   - build
@@ -16,8 +11,6 @@ stages:
 
 maven-build:
   image: maven:3-jdk-11
-  services:
-  - mysql:5.7
   stage: build
   tags:
   - dev2
