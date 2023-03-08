@@ -1,7 +1,7 @@
 variables:
   DOCKER_DRIVER: overlay
   MYSQL_DATABASE: cicd_security_module
-  MYSQL_ROOT_PASSWORD: 123456a@
+  MYSQL_ROOT_PASSWORD: password
 
 stages:
   - build
