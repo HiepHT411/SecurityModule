@@ -52,7 +52,7 @@ deploy:
   image: ubuntu:21.04
   stage: deploy
   tags:
-    - dev2-server
+    - java
   dependencies:
     - maven-build
   script:
