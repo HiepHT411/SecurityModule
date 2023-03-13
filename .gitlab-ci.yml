@@ -11,8 +11,6 @@ deploy:
   stage: deploy
   tags:
     - java
-  dependencies:
-    - maven-build
   script:
     - docker login registry.savvycom.vn -u "$CI_REGISTRY_USER" -p "$CI_GITLAB_TOKEN"
     - docker pull registry.savvycom.vn/java-next-generation/hieplaboratory
