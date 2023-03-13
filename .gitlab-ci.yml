@@ -49,14 +49,14 @@ test:
         - target/failsafe-reports/TEST-*.xml
 
 deploy:
-  image: ubuntu:21.04
   stage: deploy
   tags:
     - java
   dependencies:
     - maven-build
   script:
-    - mv target/*.jar /home/dev/opt/securityModule.jar
-    - sudo systemctl restart securityModule.service
+    - docker login registry.savvycom.vn -u "$CI_REGISTRY_USER" -p "$CI_GITLAB_TOKEN"
+    - docker pull registry.savvycom.vn/java-next-generation/hieplaboratory
+    - docker run -p 8088:8080 java-next-generation/hieplaborator
   only:
     - master
