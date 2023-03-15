@@ -4,6 +4,14 @@ variables:
   MYSQL_ROOT_PASSWORD: password
   BRANCH: ${CI_COMMIT_REF_NAME}
 
+services:
+  - mysql
+
+connect:
+  image: mysql
+  script:
+    - echo "SELECT 'OK';" | mysql --user=root --password="$MYSQL_ROOT_PASSWORD" --host=mysql "$MYSQL_DATABASE"
+
 stages:
   - build
   - build-docker-image
